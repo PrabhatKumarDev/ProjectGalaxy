@@ -4,7 +4,7 @@ from states import State
 
 screen=turtle.Screen()
 screen.title("Indian States Game")
-image="india.gif"
+image="Day 22/indian.gif"
 screen.addshape(image)
 screen.setup(width=750,height=770)
 turtle.shape(image)
@@ -17,10 +17,12 @@ turtle.shape(image)
 i=1
 while i<30:
     answer_state=screen.textinput(title="Guess the State?" ,prompt="Enter the next state")
-    data=pandas.read_csv("indian_states.csv")
+    data=pandas.read_csv("Day 22/indian_states.csv")
     states=data["states"].to_dict()
     for j in range(29):
-        if(states[j]==answer_state):
+        if(answer_state=="Exit"):
+            i=30
+        elif(states[j]==answer_state):
             guess_state=data[data["states"]==answer_state]["states"]
             x=data[data["states"]==answer_state]["x"]
             y=data[data["states"]==answer_state]["y"]
@@ -32,5 +34,4 @@ while i<30:
             i+=1
         else:
             continue
-
 turtle.mainloop()
